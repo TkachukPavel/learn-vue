@@ -27,7 +27,7 @@ const selectGenre = (genre: string) => {
 
 <template>
     <div class="container genre-select h-100">
-        <div class="row row-cols-auto h-100 ">
+        <div class="row  flex-nowrap row-cols-auto h-100 ">
             <div class="col h-100 genre-select__genre-container" v-for="genre in $props.genres">
                 <div class="genre-select__genre d-flex  h-100 flex-column justify-content-center px-2 text-uppercase"
                     :class="{ 'genre-select__genre--selected': genre === selectedGenre }"
@@ -56,6 +56,7 @@ const selectGenre = (genre: string) => {
         color: #FFFFFF;
         margin-bottom: -2px;
         box-sizing: content-box;
+        min-height: 50px;
 
         &:hover,
         &--selected {
