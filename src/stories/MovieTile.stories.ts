@@ -10,6 +10,8 @@ const meta = {
   args: {
     movie: movieMock,
     onMovieClicked: fn(),
+    onDeleteMovie: fn(),
+    onEditMovie: fn(),
   },
 } satisfies Meta<typeof MovieTile>
 

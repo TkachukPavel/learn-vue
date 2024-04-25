@@ -12,7 +12,14 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [() => ({ template: `<div id="app"> <story /></div>` })],
+  decorators: [
+    () => ({
+      template: `
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <div id="app"> <story /></div>
+  `,
+    }),
+  ],
 }
 
 export default preview

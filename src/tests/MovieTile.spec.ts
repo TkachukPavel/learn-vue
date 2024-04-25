@@ -5,6 +5,9 @@ import { movieMock } from './mocks/MovieDetails.mock'
 import { By } from '@/utils/testing'
 
 const tile = 'movie-tile'
+const menu = 'movie-tile-menu'
+const edit = 'movie-tile-edit'
+const del = 'movie-tile-delete'
 describe('MovieTile', () => {
   let wrapper: VueWrapper
 
@@ -22,5 +25,25 @@ describe('MovieTile', () => {
 
     // Assert
     expect(wrapper.emitted('movieClicked')).toEqual([[movieMock]])
+  })
+
+  it('should emit on edit movie', async () => {
+    // Act
+    await wrapper.find(By.testId(tile)).trigger('mouseover')
+    await wrapper.find(By.testId(menu)).trigger('click')
+    await wrapper.find(By.testId(edit)).trigger('click')
+
+    // Assert
+    expect(wrapper.emitted('editMovie')).toEqual([[movieMock]])
+  })
+
+  it('should emit on delete movie', async () => {
+    // Act
+    await wrapper.find(By.testId(tile)).trigger('mouseover')
+    await wrapper.find(By.testId(menu)).trigger('click')
+    await wrapper.find(By.testId(del)).trigger('click')
+
+    // Assert
+    expect(wrapper.emitted('deleteMovie')).toEqual([[movieMock]])
   })
 })
