@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const props = defineProps({
-    initQuery: String
+type SearchFormProps = {
+    initQuery?: string
+}
+
+const props = withDefaults(defineProps<SearchFormProps>(), {
+    initQuery: ''
 })
 
 const emit = defineEmits<{
@@ -54,10 +58,6 @@ const onSubmit = () => {
         }
 
         background-color: rgba(50, 50, 50, 0.8);
-
-
-
-
     }
 
     &__search-button {
@@ -68,8 +68,6 @@ const onSubmit = () => {
         text-align: center;
         color: #FFFFFF;
         padding: 18px 74px;
-
-
     }
 }
 </style>

@@ -11,9 +11,9 @@ const genres = [
   'crime'
 ]
 
-const onSearch = (query: string) => alert(query)
+const onSearch = (query: string) => console.log('Searching', query)
 
-const onGenreSelect = (genre: string) => alert(genre)
+const onGenreSelect = (genre: string) => console.log('Selected Genre', genre)
 </script>
 
 <template>

@@ -1,21 +1,26 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const props = defineProps({
-    genres: Array<string>,
-    selectedGenre: String
+type GenreSelectProps = {
+    genres: string[],
+    selectedGenre?: string
+}
+
+const props = withDefaults(
+    defineProps<GenreSelectProps>(), {
+    genres: () => [],
+    selectedGenre: ''
 })
 
 const emit = defineEmits<{
     onSelect: [value: string]
 }>()
 
-const selectedGenre = ref(props.selectedGenre ?? '')
+const selectedGenre = ref(props.selectedGenre)
 
 const selectGenre = (genre: string) => {
     selectedGenre.value = genre;
     emit('onSelect', genre)
-
 }
 
 </script>
