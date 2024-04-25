@@ -1,4 +1,4 @@
-import type { MovieDetails } from '@/models/movie-details.model'
+import type { MovieDetails } from '@/models/MovieDetails.model'
 
 export const movieDetailMock: MovieDetails = {
   title: 'Pulp Fiction',

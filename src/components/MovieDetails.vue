@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MovieDetails } from '@/models/movie-details.model';
+import type { MovieDetails } from '@/models/MovieDetails.model';
 import { computed } from 'vue';
 
 const props =
@@ -15,12 +15,12 @@ const movieLength = computed(() => {
 
 <template>
     <div class="container movie-details">
-        <div class="row gx-5">
+        <div class="row g-5">
             <div class="col-auto">
                 <img :src="$props.movieDetails?.posterUrl" class="movie-details__poster" alt="movie poster">
             </div>
             <div class="col">
-                <div class="row row-cols-auto align-items-end">
+                <div class="row row-cols-auto flex-nowrap align-items-end">
                     <div class="col">
                         <h3 class="movie-details__title text-uppercase">
                             {{ $props.movieDetails?.title }}
