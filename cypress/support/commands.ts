@@ -36,4 +36,19 @@
 //   }
 // }
 
+Cypress.Commands.add('getById', (id: string, options?) =>
+  cy.get(`[data-testid=${id}]`, options),
+)
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      getById<E extends Node = HTMLElement>(
+        id: string,
+        options?: any,
+      ): Chainable<JQuery<E>>
+    }
+  }
+}
+
 export {}
