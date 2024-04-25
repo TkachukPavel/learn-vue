@@ -1,16 +1,7 @@
-import {
-  beforeEach,
-  describe,
-  expect,
-  it,
-} from 'vitest'
-import {
-  DOMWrapper,
-  VueWrapper,
-  mount,
-} from '@vue/test-utils'
+import { beforeEach, describe, expect, it } from 'vitest'
+import { DOMWrapper, VueWrapper, mount } from '@vue/test-utils'
 import { By } from '@/utils/testing'
-import SearchForm from '../SearchForm.vue'
+import SearchForm from '@/components/SearchForm.vue'
 
 const initQuery = 'Test'
 describe('SearchForm', () => {
@@ -24,9 +15,7 @@ describe('SearchForm', () => {
       props: { initQuery },
     })
 
-    input = wrapper.find(
-      By.testId('search-input'),
-    )
+    input = wrapper.find(By.testId('search-input'))
     btn = wrapper.find(By.testId('seacrh-btn'))
     form = wrapper.find(By.testId('search-form'))
   })
@@ -47,8 +36,6 @@ describe('SearchForm', () => {
     await form.trigger('submit')
 
     // Assert
-    expect(wrapper.emitted('onSearch')).toEqual([
-      ['Test 1'],
-    ])
+    expect(wrapper.emitted('onSearch')).toEqual([['Test 1']])
   })
 })

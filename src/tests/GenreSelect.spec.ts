@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { DOMWrapper, VueWrapper, mount } from '@vue/test-utils'
 import { By } from '@/utils/testing'
-import GenreSelect from '../GenreSelect.vue'
+import GenreSelect from '@/components/GenreSelect.vue'
 
 const genres = ['Test1', 'Test2']
 const selectedGenre = genres[1]
