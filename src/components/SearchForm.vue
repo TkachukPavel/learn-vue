@@ -24,17 +24,18 @@ const onSubmit = () => {
 
 <template>
     <div class="container search-form">
-        <form @submit.prevent="onSubmit">
+        <form data-testid="search-form" @submit.prevent="onSubmit">
             <div class="row gx-3">
                 <div class="col">
-                    <label for="searchInput" class="form-label d-none">
+                    <label class="form-label d-none">
                         Search Input
                     </label>
-                    <input class="form-control h-100 search-form__input" id="searchInput" v-model="query"
-                        placeholder="What do you want to watch?">
+                    <input class="form-control h-100 search-form__input" v-model="query"
+                        placeholder="What do you want to watch?" data-testid="search-input">
                 </div>
                 <div class="col-auto">
-                    <button class="btn search-form__search-button btn-primary text-uppercase">Search</button>
+                    <button type="submit" class="btn search-form__search-button btn-primary text-uppercase"
+                        data-testid="search-btn">Search</button>
                 </div>
             </div>
         </form>

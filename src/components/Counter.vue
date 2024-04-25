@@ -11,15 +11,15 @@ const decrement = () => counter.value--;
     <div class="container counter">
         <div class="row align-items-center row-cols-auto">
             <div class="col">
-                <button class="btn btn-primary" @click="decrement">
+                <button data-testid='counter__dec-btn' class="btn btn-primary" @click="decrement">
                     -
                 </button>
             </div>
-            <div class="col counter__value">
+            <div class="col counter__value" data-testid="counter__val">
                 {{ counter }}
             </div>
             <div class="col">
-                <button class="btn btn-primary" @click="increment">+ </button>
+                <button class="btn btn-primary" data-testid="counter__inc-btn" @click="increment">+ </button>
             </div>
         </div>
     </div>

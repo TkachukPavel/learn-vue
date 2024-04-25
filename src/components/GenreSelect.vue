@@ -31,7 +31,7 @@ const selectGenre = (genre: string) => {
             <div class="col h-100 genre-select__genre-container" v-for="genre in $props.genres">
                 <div class="genre-select__genre d-flex  h-100 flex-column justify-content-center px-2 text-uppercase"
                     :class="{ 'genre-select__genre--selected': genre === selectedGenre }"
-                    @click="() => selectGenre(genre)">
+                    @click="() => selectGenre(genre)" :data-testid="`genre-${genre}`">
                     {{ genre }}
 
                 </div>
