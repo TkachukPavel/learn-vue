@@ -46,6 +46,7 @@ const selectGenre = (genre: string) => {
     background: #232323;
     border-bottom: 2px solid #424242;
     box-sizing: content-box;
+    min-height: 50px;
 
     &__genre {
         font-family: Montserrat;
