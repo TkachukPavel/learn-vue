@@ -1,6 +1,6 @@
-import type { MovieDetails } from '@/models/MovieDetails.model'
+import type { Movie } from '@/models/MovieDetails.model'
 
-export const movieDetailMock: MovieDetails = {
+export const movieMock: Movie = {
   title: 'Pulp Fiction',
   score: 8.9,
   genres: ['Action & Adventure'],

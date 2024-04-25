@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { MovieDetails } from '@/models/MovieDetails.model';
+import type { Movie } from '@/models/MovieDetails.model';
 import { computed } from 'vue';
 
 const props =
-    defineProps<{ movieDetails: MovieDetails }>()
+    defineProps<{ movie: Movie }>()
 
 const movieLength = computed(() => {
-    const { length } = props.movieDetails
+    const { length } = props.movie
     const hrs = Math.trunc(length / 60)
     const min = length % 60
     return `${hrs}h ${min}min`
@@ -17,32 +17,32 @@ const movieLength = computed(() => {
     <div class="container movie-details">
         <div class="row g-5">
             <div class="col-auto">
-                <img :src="$props.movieDetails?.posterUrl" class="movie-details__poster" alt="movie poster">
+                <img :src="$props.movie?.posterUrl" class="movie-details__poster" alt="movie poster">
             </div>
             <div class="col">
                 <div class="row row-cols-auto flex-nowrap align-items-end">
                     <div class="col">
                         <h3 class="movie-details__title text-uppercase">
-                            {{ $props.movieDetails?.title }}
+                            {{ $props.movie?.title }}
                         </h3>
                     </div>
                     <div class="col">
                         <div class="movie-details__score">
-                            {{ $props.movieDetails?.score }}
+                            {{ $props.movie?.score }}
                         </div>
                     </div>
                 </div>
                 <div class="row mt-8">
                     <div class="col">
                         <div class="movie-details__genres">
-                            {{ $props.movieDetails?.genres?.join(', ') }}
+                            {{ $props.movie?.genres?.join(', ') }}
                         </div>
                     </div>
                 </div>
                 <div class="row mt-3 pt-3 gx-5 row-cols-auto">
                     <div class="col">
                         <div class="movie-details__year">
-                            {{ $props.movieDetails?.year }}
+                            {{ $props.movie?.year }}
                         </div>
                     </div>
                     <div class="col">
@@ -52,7 +52,7 @@ const movieLength = computed(() => {
                 <div class="row mt-3 pt-3">
                     <div class="col">
                         <div class="movie-details__description">
-                            {{ $props.movieDetails?.description }}
+                            {{ $props.movie?.description }}
                         </div>
                     </div>
                 </div>

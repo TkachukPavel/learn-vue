@@ -1,4 +1,4 @@
-export type MovieDetails = {
+export type Movie = {
   title: string
   score: number
   genres: string[]

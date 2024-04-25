@@ -53,7 +53,7 @@ const selectSort = (newSorting: SortingEnum) => {
     </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .sort-control {
     background: #232323;
 

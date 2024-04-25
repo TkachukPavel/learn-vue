@@ -1,15 +1,17 @@
-import MovieDetails from '@/components/MovieDetails.vue'
+import MovieTile from '@/components/MovieTile.vue'
 import { movieMock } from '@/tests/mocks/MovieDetails.mock'
+import { fn } from '@storybook/test'
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta = {
-  title: 'Component/MovieDetails',
-  component: MovieDetails,
+  title: 'Component/MovieTile',
+  component: MovieTile,
   tags: ['autodocs'],
   args: {
     movie: movieMock,
+    onMovieClicked: fn(),
   },
-} satisfies Meta<typeof MovieDetails>
+} satisfies Meta<typeof MovieTile>
 
 export default meta
 
