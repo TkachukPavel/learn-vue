@@ -77,21 +77,12 @@ const selectSort = (newSorting: SortingEnum) => {
         text-align: left;
         color: #FFFFFF;
         border: none;
-        --bs-btn-active-color: #F65261;
-        --bs-btn-hover-color: #F65261;
 
         &::after {
             border-radius: 30px;
             margin-left: 8px;
             color: #F65261;
         }
-    }
-
-    &__dropdown-menu {
-        --bs-dropdown-bg: #424242;
-        --bs-dropdown-color: #ffffff;
-        border: none;
-        --bs-dropdown-border-radius: 0;
     }
 
     &__dropdown-item {
@@ -101,10 +92,6 @@ const selectSort = (newSorting: SortingEnum) => {
         line-height: 19.5px;
         letter-spacing: 0.8888887763023376px;
         text-align: left;
-        --bs-dropdown-link-color: #ffffff;
-        --bs-dropdown-link-hover-bg: #F65261;
-        --bs-dropdown-link-hover-color: #ffffff;
-        --bs-dropdown-link-active-bg: #F65261;
     }
 }
 </style>

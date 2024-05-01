@@ -1,6 +1,8 @@
 import type { Preview } from '@storybook/vue3'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
+import VueDatePicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 import '../src/assets/main.css'
 
 const preview: Preview = {

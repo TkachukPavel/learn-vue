@@ -51,7 +51,7 @@ const toggleMenu = () => {
 
                     <div class="col">
                         <div class="movie-tile__year px-2 py-1">
-                            {{ movie.year }}
+                            {{ movie.releaseDate.getFullYear() }}
                         </div>
                     </div>
                 </div>

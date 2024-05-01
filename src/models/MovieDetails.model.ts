@@ -2,8 +2,9 @@ export type Movie = {
   title: string
   score: number
   genres: string[]
-  year: number
+  releaseDate: Date
   length: number
   description: string
-  posterUrl: string
+  posterUrl?: string
+  movieUrl?: string
 }

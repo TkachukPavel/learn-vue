@@ -68,7 +68,6 @@ const onSubmit = () => {
         line-height: 24.38px;
         text-align: center;
         color: #FFFFFF;
-        padding: 18px 74px;
     }
 }
 </style>

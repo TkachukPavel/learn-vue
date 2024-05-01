@@ -2,6 +2,8 @@
 import Counter from './components/Counter.vue'
 import GenreSelect from './components/GenreSelect.vue';
 import SearchForm from './components/SearchForm.vue';
+import Dialog from './components/Dialog.vue';
+import MovieForm from './components/MovieForm.vue';
 
 const genres = [
   'all',
@@ -45,6 +47,13 @@ const onGenreSelect = (genre: string) => console.log('Selected Genre', genre)
       <div class="col">
         <GenreSelect :selected-genre="genres[0]" :genres="genres" @on-select="onGenreSelect" />
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <Dialog :show="true">
+        <MovieForm />
+      </Dialog>
     </div>
   </div>
 </template>
