@@ -17,15 +17,15 @@ const emit = defineEmits<{
 </script>
 <template>
     <Teleport to="body">
-        <div v-if="show" class="container p-5 mt-3 position-relative dialog">
+        <div v-if="show" class="container p-5 mt-3 position-relative dialog" data-testid="dialog">
             <div class="row">
                 <div class="col ">
-                    <div class="px-2 mb-3 text-uppercase dialog__title ">
+                    <div class="px-2 mb-3 text-uppercase dialog__title " data-testid="dialog-title">
                         {{ props.title }}
                     </div>
                 </div>
 
-                <button type="button" @click="show = false; emit('closed');"
+                <button type="button" @click="show = false; emit('closed')" data-testid="dialog-close"
                     class="btn position-absolute mt-3 me-3 top-0 end-0 btn-link w-auto h-auto dialog__close">
                     <span class="material-symbols-outlined">
                         close

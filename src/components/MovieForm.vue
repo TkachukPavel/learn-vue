@@ -3,9 +3,9 @@ import vNumberFormat from '@/directives/number-format-directive';
 import type { Movie } from '@/models/MovieDetails.model';
 import VueDatePicker from '@vuepic/vue-datepicker'
 import { ref, watch } from 'vue';
-import { vOnClickOutside } from '@vueuse/components'
 import { durationFormatter, scoreFormatter } from '@/utils/number-formatters';
 import { useFocusWithin } from '@vueuse/core';
+import { genres } from '@/constants/genres.const';
 
 type MovieForm = Partial<Movie>
 
@@ -24,13 +24,6 @@ const props = withDefaults(
 
 const dropdownOpened = ref(false)
 
-const genres = [
-    'Crime',
-    'Documentary',
-    'Horror',
-    'Comedy',
-    'Action & Adventure'
-]
 
 const form = ref<MovieForm>({ ...props.movie })
 
@@ -41,7 +34,8 @@ watch(useFocusWithin(genresField).focused, (focused) => {
 
 <template>
     <div class="container px-0 movie-form">
-        <form @submit.prevent="emit('submit', form)" @reset.prevent="form = { ...props.movie }">
+        <form @submit.prevent="emit('submit', form)" @reset.prevent="form = { ...props.movie }"
+            data-testid="movie-form">
             <div class="row pb-3 mb-2">
                 <div class="col">
                     <div class="movie-form__container d-flex flex-column">
@@ -50,7 +44,7 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                         </label>
 
                         <input required id="movie-form-title" class="form-control p-3 movie-form__input" type="text"
-                            v-model="form.title">
+                            v-model="form.title" data-testid="movie-form-title">
 
                     </div>
                 </div>
@@ -59,9 +53,9 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                         <label for="movie-form-release-date" class="text-uppercase form-label movie-form__input-label">
                             release date
                         </label>
-                        <VueDatePicker dark class="w-fixed" auto-apply v-model="form.releaseDate"
-                            input-class-name="form-control py-3 ps-5 movie-form__input" format="MM/dd/yyyy"
-                            :enable-time-picker="false">
+                        <VueDatePicker dark class="w-fixed" :uid="'movie-form-release-date'" auto-apply
+                            v-model="form.releaseDate" input-class-name="form-control py-3 ps-5 movie-form__input"
+                            format="MM/dd/yyyy" :enable-time-picker="false">
                             <template #input-icon>
                                 <div class="material-symbols-outlined p-3">
                                     calendar_month
@@ -79,7 +73,7 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                             movie url
                         </label>
                         <input id="movie-form-url" class="form-control p-3 movie-form__input" type="text"
-                            placeholder="https://" v-model="form.movieUrl">
+                            placeholder="https://" v-model="form.movieUrl" data-testid="movie-form-url">
 
                     </div>
                 </div>
@@ -91,7 +85,7 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                         </label>
                         <input id="movie-form-release-rating" class="form-control p-3 movie-form__input w-fixed"
                             type="text" v-model.number="form.score" v-number-format="scoreFormatter" placeholder="7.8"
-                            min="0" max="10">
+                            min="0" max="10" data-testid="movie-form-rating">
 
                     </div>
                 </div>
@@ -105,7 +99,7 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                         <div ref="genresField">
                             <input id="movie-form-genre" class="form-control p-3 movie-form__input"
                                 placeholder="Select Genre" readonly :value="form.genres?.join(', ')" type="text"
-                                :style="{ cursor: 'pointer' }">
+                                :style="{ cursor: 'pointer' }" data-testid="movie-form-genre-input">
 
                             <ul class="dropdown-menu dropdown-menu-end movie-form__dropdown-menu"
                                 :class="{ show: dropdownOpened }">
@@ -136,7 +130,8 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                             runtime
                         </label>
                         <input id="movie-form-runtime" class="form-control p-3 movie-form__input w-fixed"
-                            placeholder="minutes" v-number-format="durationFormatter" v-model.number="form.length">
+                            placeholder="minutes" v-number-format="durationFormatter" v-model.number="form.length"
+                            data-testid="movie-form-length">
 
                     </div>
                 </div>
@@ -148,17 +143,20 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                         overview
                     </label>
                     <textarea class="form-control p-3 movie-form__input movie-form__input--textarea"
-                        placeholder="Movie Description" id="movie-form-overview" v-model="form.description"></textarea>
+                        placeholder="Movie Description" id="movie-form-overview" v-model="form.description"
+                        data-testid="movie-form-description"></textarea>
 
                 </div>
             </div>
 
             <div class="row row-cols-auto justify-content-end">
                 <div class="col">
-                    <button type="reset" class="btn  btn-outline-secondary text-uppercase py-2 px-5">Reset</button>
+                    <button type="reset" class="btn  btn-outline-secondary text-uppercase py-2 px-5"
+                        data-testid="movie-form-reset">Reset</button>
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-primary text-uppercase py-2 px-5">Submit</button>
+                    <button type="submit" class="btn btn-primary text-uppercase py-2 px-5"
+                        data-testid="movie-form-submit">Submit</button>
                 </div>
             </div>
         </form>
