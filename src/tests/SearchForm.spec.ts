@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { DOMWrapper, VueWrapper, mount } from '@vue/test-utils'
 import { By } from '@/utils/testing'
 import SearchForm from '@/components/SearchForm.vue'
+import { testid } from '@/constants'
 
 const initQuery = 'Test'
 describe('SearchForm', () => {
@@ -15,9 +16,9 @@ describe('SearchForm', () => {
       props: { initQuery },
     })
 
-    input = wrapper.find(By.testId('search-input'))
-    btn = wrapper.find(By.testId('seacrh-btn'))
-    form = wrapper.find(By.testId('search-form'))
+    input = wrapper.find(By.testId(testid.SearchForm.input))
+    btn = wrapper.find(By.testId(testid.SearchForm.btn))
+    form = wrapper.find(By.testId(testid.SearchForm.container))
   })
 
   it('is created', () => {

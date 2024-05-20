@@ -37,7 +37,7 @@ describe('Movie Form', () => {
   describe('Score Field', () => {
     it('applies formatting to score field', () => {
       expect(rating.element.value).toContain(
-        scoreFormatter(movieMock.score),
+        scoreFormatter(movieMock.vote_average),
       )
     })
 
@@ -59,7 +59,7 @@ describe('Movie Form', () => {
   describe('Duration Field', () => {
     it('formats initial value', async () => {
       expect(movieLength.element.value).toEqual(
-        durationFormatter(movieMock.length),
+        durationFormatter(movieMock.runtime),
       )
     })
 
@@ -67,7 +67,7 @@ describe('Movie Form', () => {
       await movieLength.trigger('focus')
 
       expect(movieLength.element.value).toEqual(
-        movieMock.length.toString(),
+        movieMock.runtime.toString(),
       )
     })
   })
@@ -113,15 +113,17 @@ describe('Movie Form', () => {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric',
-        }).format(movieMock.releaseDate),
+        }).format(new Date(movieMock?.release_date ?? '')),
       )
 
-      expect(movieUrl.element.value).toEqual(movieMock.movieUrl ?? '')
-      expect(rating.element.value).toEqual(scoreFormatter(movieMock.score))
+      expect(movieUrl.element.value).toEqual('')
+      expect(rating.element.value).toEqual(
+        scoreFormatter(movieMock.vote_average),
+      )
       expect(genreDisplay.element.value).toEqual(
         movieMock.genres.join(', '),
       )
-      expect(movieDescription.element.value).toEqual(movieMock.description)
+      expect(movieDescription.element.value).toEqual('')
     })
 
     it('can submit value', async () => {

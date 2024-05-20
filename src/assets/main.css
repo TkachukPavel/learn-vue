@@ -1,7 +1,12 @@
 @import './base.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.btn-primary {
+body {
+  --bs-border-radius: 3px;
+  --bs-border-width: 0;
+}
+
+body .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #f65261;
   --bs-btn-border-color: #f65261;
@@ -39,7 +44,7 @@
   --highlight-text-color: #f65261;
 }
 
-.dropdown-toggle {
+body .dropdown-toggle {
   --bs-btn-active-color: #f65261;
   --bs-btn-hover-color: #f65261;
 }
@@ -124,28 +129,11 @@
   --bs-dropdown-link-hover-color: #ffffff;
   --bs-dropdown-link-active-bg: #f65261;
 }
-.dropdown-menu {
+body .dropdown-menu {
   --bs-dropdown-bg: #424242;
   --bs-dropdown-color: #ffffff;
   border: none;
   --bs-dropdown-border-radius: 0;
-}
-
-.btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: #f65261;
-  --bs-btn-border-color: #f65261;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #f65261;
-  --bs-btn-hover-border-color: #f65261;
-  --bs-btn-focus-shadow-rgb: 49, 132, 253;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #f65261;
-  --bs-btn-active-border-color: #f65261;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #f65261;
-  --bs-btn-disabled-border-color: #f65261;
 }
 
 #app {

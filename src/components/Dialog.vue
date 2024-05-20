@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { testid } from '@/constants';
 
 const props = withDefaults(defineProps<{
     title?: string,
@@ -17,15 +18,15 @@ const emit = defineEmits<{
 </script>
 <template>
     <Teleport to="body">
-        <div v-if="show" class="container p-5 mt-3 position-relative dialog" data-testid="dialog">
+        <div v-if="show" class="container p-5 mt-3 position-relative dialog" :data-testid="testid.Dialog.container">
             <div class="row">
                 <div class="col ">
-                    <div class="px-2 mb-3 text-uppercase dialog__title " data-testid="dialog-title">
+                    <div class="px-2 mb-3 text-uppercase dialog__title " :data-testid="testid.Dialog.title">
                         {{ props.title }}
                     </div>
                 </div>
 
-                <button type="button" @click="show = false; emit('closed')" data-testid="dialog-close"
+                <button type="button" @click="show = false; emit('closed')" :data-testid="testid.Dialog.closeBtn"
                     class="btn position-absolute mt-3 me-3 top-0 end-0 btn-link w-auto h-auto dialog__close">
                     <span class="material-symbols-outlined">
                         close

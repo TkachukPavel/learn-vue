@@ -2,7 +2,7 @@ import GenreSelect from '@/components/GenreSelect.vue'
 import { fn } from '@storybook/test'
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-const genres = ['all', 'documentary', 'comedy', 'horror', 'crime']
+const genres = ['documentary', 'comedy', 'horror', 'crime']
 
 const meta = {
   title: 'Component/GenreSelect',

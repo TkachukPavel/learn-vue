@@ -3,11 +3,12 @@ import { mount, type VueWrapper } from '@vue/test-utils'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { movieMock } from './mocks/MovieDetails.mock'
 import { By } from '@/utils/testing'
+import { testid } from '@/constants'
 
-const tile = 'movie-tile'
-const menu = 'movie-tile-menu'
-const edit = 'movie-tile-edit'
-const del = 'movie-tile-delete'
+const tile = testid.MovieTile.container
+const menu = testid.MovieTile.menu
+const edit = testid.MovieTile.menuEdit
+const del = testid.MovieTile.menuDelete
 describe('MovieTile', () => {
   let wrapper: VueWrapper
 

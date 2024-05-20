@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { testid } from '@/constants';
 
 type GenreSelectProps = {
     genres: string[],
@@ -9,7 +10,7 @@ type GenreSelectProps = {
 const props = withDefaults(
     defineProps<GenreSelectProps>(), {
     genres: () => [],
-    selectedGenre: ''
+    selectedGenre: 'all'
 })
 
 const emit = defineEmits<{
@@ -28,10 +29,19 @@ const selectGenre = (genre: string) => {
 <template>
     <div class="container genre-select h-100">
         <div class="row  flex-nowrap row-cols-auto h-100 ">
+            <div class="col ps-0 h-100 genre-select_genre-container">
+                <div class="genre-select__genre d-flex h-100 flex-column justify-content-center px-2 text-uppercase"
+                    :class="{ 'genre-select__genre--selected': 'all' === selectedGenre }" style="cursor: pointer;"
+                    @click="selectGenre('all')" :data-testid="testid.GenreSelect.genreAll" tabindex="0"
+                    @keyup.enter="selectGenre('all')">
+                    all
+                </div>
+            </div>
             <div class="col h-100 genre-select__genre-container" v-for="genre in $props.genres">
                 <div class="genre-select__genre d-flex  h-100 flex-column justify-content-center px-2 text-uppercase"
-                    :class="{ 'genre-select__genre--selected': genre === selectedGenre }"
-                    @click="() => selectGenre(genre)" :data-testid="`genre-${genre}`">
+                    :class="{ 'genre-select__genre--selected': genre === selectedGenre }" style="cursor: pointer;"
+                    @click="selectGenre(genre)" @keyup.enter="selectGenre(genre)"
+                    :data-testid="testid.GenreSelect.genre(genre)" tabindex="0">
                     {{ genre }}
 
                 </div>
@@ -44,7 +54,6 @@ const selectGenre = (genre: string) => {
 <style scoped lang="scss">
 .genre-select {
     background: #232323;
-    border-bottom: 2px solid #424242;
     box-sizing: content-box;
     min-height: 50px;
 
@@ -58,6 +67,10 @@ const selectGenre = (genre: string) => {
         margin-bottom: -2px;
         box-sizing: content-box;
         min-height: 50px;
+
+        &:focus-visible {
+            outline-color: transparent;
+        }
 
         &:hover,
         &--selected {

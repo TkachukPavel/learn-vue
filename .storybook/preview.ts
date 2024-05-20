@@ -7,6 +7,9 @@ import '../src/assets/main.css'
 
 const preview: Preview = {
   parameters: {
+    fetchMock: {
+      mocks: [],
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

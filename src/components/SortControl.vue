@@ -1,49 +1,58 @@
 <script setup lang="ts">
 import { SortingEnum } from '@/models/SortControl.model';
-import { ref } from 'vue';
+import { useFocusWithin } from '@vueuse/core';
+import { computed, ref, watch } from 'vue';
+import { testid } from '@/constants';
 
 
 const Sorting = SortingEnum;
 
-const opened = ref(false)
 const sorting = defineModel<SortingEnum>()
 
-const toggleDropdown = () => {
-    opened.value = !opened.value
-}
+const sortingElement = ref()
+const opened = ref(false)
 
-const selectSort = (newSorting: SortingEnum) => {
-    opened.value = false
-    sorting.value = newSorting
-}
+watch(useFocusWithin(sortingElement).focused, (focused) => {
+    opened.value = focused
+})
+
+const displayValue = computed(() => {
+    switch (sorting.value) {
+        case SortingEnum.ReleaseDate:
+            return 'release date';
+        case SortingEnum.Title:
+            return 'title'
+    }
+})
 
 </script>
 
 <template>
-    <div class="container sort-control">
-        <div class="row row-cols-auto align-items-center">
+    <div class="container-fluid px-0 h-100 sort-control" ref="sortingElement">
+        <div class="row row-cols-auto h-100 align-items-center">
             <div class="col">
-                <div for="sort-select" class="sort-control__label text-uppercase">
+                <label for="sort-select" class="sort-control__label text-uppercase">
                     sort by
-                </div>
+                </label>
             </div>
             <div class="col">
                 <div class="dropdown sort-contol__dropdown">
-                    <button class="btn dropdown-toggle text-uppercase sort-control__dropdown-toggle" type="button"
-                        @click="toggleDropdown" data-testid="sort-control-toggle">
-                        {{ sorting }}
-                    </button>
+                    <input class="dropdown-toggle text-uppercase form-control sort-control__dropdown-toggle"
+                        style="cursor: pointer;" :data-testid="testid.SortControl.menu" readonly :value="displayValue"
+                        id="sort-select">
                     <ul class="dropdown-menu dropdown-menu-end sort-control__dropdown-menu" :class="{ show: opened }">
                         <li>
                             <a class="dropdown-item py-2 text-uppercase sort-control__dropdown-item"
-                                @click="() => selectSort(Sorting.ReleaseDate)" data-testid="sorting-release-date">
-                                {{ Sorting.ReleaseDate }}
+                                @click="sorting = Sorting.ReleaseDate; opened = false"
+                                :data-testid="testid.SortControl.year" style="cursor: pointer;" tabindex="0">
+                                release date
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item py-2 text-uppercase sort-control__dropdown-item"
-                                @click="() => selectSort(Sorting.Title)" data-testid="sorting-title">
-                                {{ Sorting.Title }}
+                                @click="sorting = Sorting.Title; opened = false" style="cursor: pointer;"
+                                :data-testid="testid.SortControl.title" tabindex="0">
+                                title
                             </a>
                         </li>
                     </ul>
@@ -77,6 +86,7 @@ const selectSort = (newSorting: SortingEnum) => {
         text-align: left;
         color: #FFFFFF;
         border: none;
+        background-color: transparent;
 
         &::after {
             border-radius: 30px;
@@ -93,5 +103,7 @@ const selectSort = (newSorting: SortingEnum) => {
         letter-spacing: 0.8888887763023376px;
         text-align: left;
     }
+
+    &__dropdown-menu {}
 }
 </style>

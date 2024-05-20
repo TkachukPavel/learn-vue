@@ -54,7 +54,7 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                             release date
                         </label>
                         <VueDatePicker dark class="w-fixed" :uid="'movie-form-release-date'" auto-apply
-                            v-model="form.releaseDate" input-class-name="form-control py-3 ps-5 movie-form__input"
+                            v-model="form.release_date" input-class-name="form-control py-3 ps-5 movie-form__input"
                             format="MM/dd/yyyy" :enable-time-picker="false">
                             <template #input-icon>
                                 <div class="material-symbols-outlined p-3">
@@ -84,8 +84,8 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                             rating
                         </label>
                         <input id="movie-form-release-rating" class="form-control p-3 movie-form__input w-fixed"
-                            type="text" v-model.number="form.score" v-number-format="scoreFormatter" placeholder="7.8"
-                            min="0" max="10" data-testid="movie-form-rating">
+                            type="text" v-model.number="form.vote_average" v-number-format="scoreFormatter"
+                            placeholder="7.8" min="0" max="10" data-testid="movie-form-rating">
 
                     </div>
                 </div>
@@ -130,7 +130,7 @@ watch(useFocusWithin(genresField).focused, (focused) => {
                             runtime
                         </label>
                         <input id="movie-form-runtime" class="form-control p-3 movie-form__input w-fixed"
-                            placeholder="minutes" v-number-format="durationFormatter" v-model.number="form.length"
+                            placeholder="minutes" v-number-format="durationFormatter" v-model.number="form.runtime"
                             data-testid="movie-form-length">
 
                     </div>

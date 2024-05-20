@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { testid } from '@/constants';
 
 type SearchFormProps = {
     initQuery?: string
@@ -18,24 +19,23 @@ const query = ref(props.initQuery ?? '')
 
 const onSubmit = () => {
     emit('onSearch', query.value)
-    query.value = ''
 }
 </script>
 
 <template>
-    <div class="container search-form">
-        <form data-testid="search-form" @submit.prevent="onSubmit">
+    <div class="container-fluid px-0 search-form">
+        <form :data-testid="testid.SearchForm.container" @submit.prevent="onSubmit">
             <div class="row gx-3">
                 <div class="col">
                     <label class="form-label d-none">
                         Search Input
                     </label>
                     <input class="form-control h-100 search-form__input" v-model="query"
-                        placeholder="What do you want to watch?" data-testid="search-input">
+                        placeholder="What do you want to watch?" :data-testid="testid.SearchForm.input">
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn search-form__search-button btn-primary text-uppercase"
-                        data-testid="search-btn">Search</button>
+                    <button type="submit" class="btn search-form__search-button btn-primary py-2 px-5 text-uppercase"
+                        :data-testid="testid.SearchForm.btn">Search</button>
                 </div>
             </div>
         </form>

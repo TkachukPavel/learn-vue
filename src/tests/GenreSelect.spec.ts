@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { DOMWrapper, VueWrapper, mount } from '@vue/test-utils'
 import { By } from '@/utils/testing'
 import GenreSelect from '@/components/GenreSelect.vue'
+import { testid } from '@/constants'
 
 const genres = ['Test1', 'Test2']
 const selectedGenre = genres[1]
@@ -15,7 +16,9 @@ describe('Genre Select', () => {
       props: { selectedGenre, genres },
     })
 
-    preselectedGenre = wrapper.find(By.testId(`genre-${selectedGenre}`))
+    preselectedGenre = wrapper.find(
+      By.testId(testid.GenreSelect.genre(selectedGenre)),
+    )
   })
 
   it('is created', () => {
@@ -29,7 +32,9 @@ describe('Genre Select', () => {
 
   it('can select genre', async () => {
     // Arrange
-    const otherGenre = wrapper.find(By.testId(`genre-${genres[0]}`))
+    const otherGenre = wrapper.find(
+      By.testId(testid.GenreSelect.genre(genres[0])),
+    )
 
     // Act
     await otherGenre.trigger('click')

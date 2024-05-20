@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Movie } from '@/models/MovieDetails.model';
 import { durationFormatter, scoreFormatter } from '@/utils/number-formatters';
-
+import { testid } from '@/constants';
 
 const props =
     defineProps<{ movie: Movie }>()
@@ -12,42 +12,44 @@ const props =
     <div class="container movie-details">
         <div class="row g-5">
             <div class="col-auto">
-                <img :src="props.movie.posterUrl" class="movie-details__poster" alt="movie poster">
+                <img :src="props.movie.poster_path" class="movie-details__poster" :alt="`${$props.movie.title} poster`"
+                    :data-testid="testid.MovieDetails.poster">
             </div>
             <div class="col">
-                <div class="row row-cols-auto flex-nowrap align-items-end">
+                <div class="row flex-nowrap align-items-center">
                     <div class="col">
-                        <h3 class="movie-details__title text-uppercase">
+                        <h3 class="movie-details__title text-uppercase" :data-testid="testid.MovieDetails.title">
                             {{ props.movie.title }}
                         </h3>
                     </div>
-                    <div class="col">
-                        <div class="movie-details__score">
-                            {{ scoreFormatter(props.movie.score) }}
+                    <div class="col-auto">
+                        <div class="movie-details__score" :data-testid="testid.MovieDetails.score">
+                            {{ scoreFormatter(props.movie.vote_average) }}
                         </div>
                     </div>
                 </div>
                 <div class="row mt-8">
                     <div class="col">
-                        <div class="movie-details__genres">
+                        <div class="movie-details__genres" :data-testid="testid.MovieDetails.genres">
                             {{ props.movie.genres?.join(', ') }}
                         </div>
                     </div>
                 </div>
                 <div class="row mt-3 pt-3 gx-5 row-cols-auto">
                     <div class="col">
-                        <div class="movie-details__year">
-                            {{ props.movie.releaseDate.getFullYear() }}
+                        <div class="movie-details__year" :data-testid="testid.MovieDetails.year">
+                            {{ new Date(props.movie?.release_date ?? '').getFullYear() }}
                         </div>
                     </div>
                     <div class="col">
-                        <div class="movie-details__length">{{ durationFormatter(props.movie.length) }}</div>
+                        <div class="movie-details__length" :data-testid="testid.MovieDetails.runtime">{{
+                            durationFormatter(props.movie.runtime) }}</div>
                     </div>
                 </div>
                 <div class="row mt-3 pt-3">
                     <div class="col">
-                        <div class="movie-details__description">
-                            {{ props.movie.description }}
+                        <div class="movie-details__description" :data-testid="testid.MovieDetails.overview">
+                            {{ props.movie.overview }}
                         </div>
                     </div>
                 </div>
@@ -66,7 +68,6 @@ const props =
         font-weight: 300;
         line-height: 48.76px;
         letter-spacing: 1px;
-        text-align: center;
         color: #FFFFFF
     }
 
@@ -114,7 +115,13 @@ const props =
         opacity: 0.5;
     }
 
-    &__poster {}
+    &__poster {
+        width: 323.41px;
+        height: 486px;
+        display: block;
+        background-color: #555555;
+        color: #FFFFFF;
+    }
 
 }
 </style>

@@ -8,13 +8,12 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     'storybook-dark-mode',
+    'storybook-addon-fetch-mock',
   ],
   framework: {
     name: '@storybook/vue3-vite',
     options: {},
   },
-  docs: {
-    autodocs: 'tag',
-  },
+  docs: {},
 }
 export default config
